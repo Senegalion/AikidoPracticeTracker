@@ -27,6 +27,9 @@ public class AikidoPracticeTracker {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             displayMenu();
+
+            while (!scanner.hasNextInt());
+
             int choice = scanner.nextInt();
             scanner.nextLine();
 

@@ -22,42 +22,42 @@ public class AikidoPracticeTrackerTest {
 
     @Test
     public void testAddPracticeSession() {
-        tracker.addSession("2024-02-01", 90);
+        tracker.addSession("2025-02-27", 90);
         assertEquals(90, tracker.getTotalPracticeTime());
     }
 
     @Test
     public void testTotalPracticeTime() {
-        tracker.addSession("2024-02-01", 60);
-        tracker.addSession("2024-02-02", 30);
+        tracker.addSession("2025-02-27", 60);
+        tracker.addSession("2025-02-27", 30);
         assertEquals(90, tracker.getTotalPracticeTime());
     }
 
     @Test
     public void testGraduationEligibility() {
         for (int i = 0; i < 100; i++) {
-            tracker.addSession("2024-02-" + (i + 1), 60);
+            tracker.addSession("2025-02-27" + (i + 1), 60);
         }
         assertTrue(tracker.checkGraduationEligibility());
     }
 
     @Test
     void testAddSession() {
-        tracker.addSession("2024-02-01", 60);
+        tracker.addSession("2025-02-27", 60);
         assertEquals(60, tracker.getTotalPracticeTime(), "Total time should be 60 minutes after adding one session.");
     }
 
     @Test
     void testMultipleSessionsTotalTime() {
-        tracker.addSession("2024-02-01", 60);
-        tracker.addSession("2024-02-02", 30);
+        tracker.addSession("2025-02-27", 60);
+        tracker.addSession("2025-02-27", 30);
         assertEquals(90, tracker.getTotalPracticeTime(), "Total time should sum correctly.");
     }
 
     @Test
     void testGraduationEligibility_BySessionsCount() {
         for (int i = 0; i < 100; i++) {
-            tracker.addSession("2024-02-" + (i + 1), 30);
+            tracker.addSession("2025-02-27" + (i + 1), 30);
         }
         assertTrue(tracker.checkGraduationEligibility(), "Should be eligible with 100 sessions.");
     }
@@ -65,14 +65,14 @@ public class AikidoPracticeTrackerTest {
     @Test
     void testGraduationEligibility_ByTotalTime() {
         for (int i = 0; i < 50; i++) {
-            tracker.addSession("2024-02-" + (i + 1), 360);
+            tracker.addSession("2025-02-27" + (i + 1), 360);
         }
         assertTrue(tracker.checkGraduationEligibility(), "Should be eligible with 6 months of total practice time.");
     }
 
     @Test
     void testNotEligibleForGraduation() {
-        tracker.addSession("2024-02-01", 50);
+        tracker.addSession("2025-02-27", 50);
         assertFalse(tracker.checkGraduationEligibility(), "Should not be eligible with only 50 minutes.");
     }
 
@@ -99,20 +99,20 @@ public class AikidoPracticeTrackerTest {
 
     @Test
     void testSimulatedAddPracticeSession() {
-        simulateUserInput("1\n2024-02-01\n90\n4\n");
+        simulateUserInput("1\n2025-02-27\n90\n4\n");
 
         tracker.run();
 
         String output = outputStream.toString();
-        assertTrue(output.contains("Enter session date"), "Should prompt for date");
-        assertTrue(output.contains("Enter session duration"), "Should prompt for duration");
-        assertTrue(output.contains("Session added!"), "Session should be added confirmation");
+        assertTrue(output.contains("Enter session date"), "Should be visible prompt to enter session date");
+        assertTrue(output.contains("Enter session duration"), "Should be visible prompt to enter session duration");
+        assertTrue(output.contains("Session added!"), "Should be visible confirmation that session has been added");
         assertEquals(90, tracker.getTotalPracticeTime(), "Total practice time should be updated");
     }
 
     @Test
     void testViewTotalPracticeTime() {
-        tracker.addSession("2024-02-01", 90);
+        tracker.addSession("2025-02-27", 90);
         simulateUserInput("2\n4\n");
 
         tracker.run();
@@ -134,7 +134,7 @@ public class AikidoPracticeTrackerTest {
     @Test
     void testGraduationEligibility_Eligible() {
         for (int i = 0; i < 100; i++) {
-            tracker.addSession("2024-02-" + (i + 1), 30);
+            tracker.addSession("2025-02-27" + (i + 1), 30);
         }
         simulateUserInput("3\n4\n");
 
